@@ -1,29 +1,35 @@
-// ---------- fundo de coraçõezinhos ---------- 
-const ceu = document.getElementById('ceu'); 
-const simbolos = ['💜','✨','🌷','💫']; 
-for(let i=0; i<22; i++){ 
-const s = document.createElement('span'); 
-s.className = 'coracao'; 
-s.textContent = simbolos[Math.floor(Math.random()*simbolos.length)]; 
-s.style.left = Math.random()*100 + '%'; 
-s.style.animationDuration = (10 + Math.random()*10) + 's'; 
-s.style.animationDelay = (Math.random()*10) + 's'; 
-s.style.fontSize = (1 + Math.random()*1.2) + 'rem'; 
+// ---------- Fundo com corações ---------- 
+const ceu = document.getElementById("ceu"); 
+const simbolos = ["💜", "✨", "🌷", "💫"];
+
+for (let i = 0; i < 22; i++) { 
+const s = document.createElement("span"); 
+s.className = "coracao"; 
+s.textContent = simbolos[Math.floor(Math.random() * simbolos.length)]; 
+s.style.left = Math.random() * 100 + "%"; 
+s.style.animationDuration = (10 + Math.random() * 10) + "s"; 
+s.style.animationDelay = Math.random() * 10 + "s"; 
+s.style.fontSize = (1 + Math.random() * 1.2) + "rem"; 
 ceu.appendChild(s); 
 }
 
-// ---------- envelope ---------- 
-const envelope = document.getElementById('envelope'); 
-function toggleEnvelope(){ 
-envelope.classList.toggle('aberto'); 
-} 
-envelope.addEventListener('keypress', e => { 
-if (e.key = 'Enter' || e.key = ' ') { 
+// ---------- Envelope ---------- 
+const envelope = document.getElementById("envelope");
+
+function toggleEnvelope() { 
+envelope.classList.toggle("aberto"); 
+}
+
+envelope.addEventListener("click", toggleEnvelope);
+
+envelope.addEventListener("keypress", (e) => { 
+if (e.key = "Enter" || e.key = " ") { 
+e.preventDefault(); 
 toggleEnvelope(); 
 } 
 });
 
-// ---------- motivos (🖊️ edite a lista abaixo à vontade) ---------- 
+// ---------- Motivos ---------- 
 const motivos = [ 
 "porque você lembra de detalhes que eu nem contei que importavam", 
 "porque rir com você cura qualquer dia ruim", 
@@ -43,20 +49,32 @@ const motivos = [
 "porque essa amizade eu já estou começando a amar, assim como amar ela" 
 ];
 
-const cartao = document.getElementById('cartaoMotivo'); 
-const contador = document.getElementById('contador'); 
+const cartao = document.getElementById("cartaoMotivo"); 
+const contador = document.getElementById("contador"); 
+const btnMotivo = document.getElementById("btnMotivo");
+
 let usados = [];
 
-document.getElementById('btnMotivo').addEventListener('click', () => { 
-if(usados.length === motivos.length) usados = []; 
-let idx; 
-do{ idx = Math.floor(Math.random()*motivos.length); }while(usados.includes(idx)); 
+btnMotivo.addEventListener("click", () => {
+
+if (usados.length === motivos.length) {
+    usados = [];
+}
+
+let idx;
+
+do {
+    idx = Math.floor(Math.random() * motivos.length);
+} while (usados.includes(idx));
+
 usados.push(idx);
 
-cartao.classList.add('trocando'); 
-setTimeout(() => { 
-cartao.textContent = motivos[idx]; 
-cartao.classList.remove('trocando'); 
+cartao.classList.add("trocando");
+
+setTimeout(() => {
+    cartao.textContent = motivos[idx];
+    cartao.classList.remove("trocando");
 }, 180);
 
-contador.textContent = ${usados.length} de ${motivos.length} motivos vistos;
+contador.textContent = `${usados.length} de ${motivos.length} motivos vistos`;
+});
