@@ -17,9 +17,10 @@ const envelope = document.getElementById('envelope');
 function toggleEnvelope(){ 
 envelope.classList.toggle('aberto'); 
 } 
-envelope.addEventListener('click', toggleEnvelope); 
 envelope.addEventListener('keypress', e => { 
-if(e.key = 'Enter' || e.key = ' ') toggleEnvelope(); 
+if (e.key = 'Enter' || e.key = ' ') { 
+toggleEnvelope(); 
+} 
 });
 
 // ---------- motivos (🖊️ edite a lista abaixo à vontade) ---------- 
@@ -58,5 +59,4 @@ cartao.textContent = motivos[idx];
 cartao.classList.remove('trocando'); 
 }, 180);
 
-contador.textContent = ${usados.length} de ${motivos.length} motivos vistos; 
-});
+contador.textContent = ${usados.length} de ${motivos.length} motivos vistos;
